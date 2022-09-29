@@ -31,13 +31,15 @@ export async function serviceLogin(email:string,password:string) {
     const checkEmail = await authRepository.findByEmail(email);
     if (!checkEmail) throw notFoundError('E-mail')
     if(!checkEmail.active) throw {type:"unauthorized",message:"E-mail não confirmado"}
+
     if (bcrypt.compareSync(password, checkEmail.password)) {
       const data = { userId: checkEmail.id };
       const secretKey = process.env.JWT_SECRET;
       const config = { expiresIn: 60 * 60 * 24 };
       const token = jwt.sign(data, secretKey, config);
-      return token
-    } else throw {type:"unauthorized",message:"Senha incorreta"}
+      return {token,id:checkEmail.id,name:checkEmail.name}
+    } 
+    else throw {type:"unauthorized",message:"Senha incorreta"}
 }
 
 export async function serviceActivation(activationToken:string) {
@@ -51,7 +53,7 @@ export async function serviceActivation(activationToken:string) {
 export async function serviceResendEmail(email:string) {
   const checkEmail = await authRepository.findByEmail(email);
   if (!checkEmail) throw notFoundError('E-mail')
-  if(!checkEmail.active) throw {type:"unauthorized",message:"E-mail já confirmado"}
+  if(checkEmail.active) throw {type:"unauthorized",message:"E-mail já confirmado"}
 
   const activationToken=uuid()
   await authRepository.updateActivationToken(email,activationToken)

@@ -10,18 +10,18 @@ export async function signUp(req:Request, res:Response) {
 
 export async function login(req:Request, res:Response) {
     const { email, password } = req.body;
-    const token=await serviceLogin(email,password)
-    res.status(200).send(token);
+    const response=await serviceLogin(email,password)
+    res.status(200).send(response);
 }
 
 export async function activation(req:Request, res:Response){
     const {activationToken}=req.params
     await serviceActivation(activationToken)
-    res.sendStatus(200)
+    res.status(200).send("Seu E-mail foi confirmado com sucesso")
 }
 
 export async function resendEmail(req:Request, res:Response){
-    const {email}=req.params
+    const {email}=req.body
     await serviceResendEmail(email)
     res.sendStatus(200)
 }

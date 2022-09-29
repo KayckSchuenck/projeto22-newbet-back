@@ -7,7 +7,7 @@ const authRouter=Router();
 
 authRouter.post('/signup',schemaValidateMiddleware(schemaSignUp),signUp)
 authRouter.post('/login',schemaValidateMiddleware(schemaLogin),login)
-authRouter.put('/confirm/:activationToken',activation)
+authRouter.get('/confirm/:activationToken',activation)
 authRouter.put('/confirm/resend',schemaValidateMiddleware(schemaResendEmail),resendEmail)
 
 export default authRouter
