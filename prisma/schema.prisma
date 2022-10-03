@@ -16,7 +16,21 @@ model User {
   active          Boolean       @default(false)
   activationToken String        @unique
   createdAt       DateTime      @default(now())
-
+  Bet             Bet[]
   @@map("users")
+}
+
+model Bet { 
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  betAt         DateTime     @default(now())
+  finished      Boolean      @default(false)
+  amount        Float       
+  gameId        Int
+  type          String
+  odd           Float
+  user          User?        @relation(fields: [userId], references: [id])
+
+  @@map("bets")
 }
 
