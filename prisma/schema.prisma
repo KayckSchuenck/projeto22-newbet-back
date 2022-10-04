@@ -15,22 +15,49 @@ model User {
   name            String  
   active          Boolean       @default(false)
   activationToken String        @unique
+  availableMoney  Float         @default(20)
   createdAt       DateTime      @default(now())
-  Bet             Bet[]
+  BetOptions                    BetOptions[]
+  BetGoalsOverUnder             BetGoalsOverUnder[]
   @@map("users")
 }
 
-model Bet { 
+model BetOptions { 
   id            Int          @id @default(autoincrement())
   userId        Int
-  betAt         DateTime     @default(now())
+  createdAt     DateTime     @default(now())
   finished      Boolean      @default(false)
   amount        Float       
-  gameId        Int
-  type          String
+  fixtureId     Int
+  value         homeAwayDraw    
   odd           Float
   user          User?        @relation(fields: [userId], references: [id])
 
-  @@map("bets")
+  @@map("betsOptions")
 }
 
+model BetGoalsOverUnder { 
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  createdAt     DateTime     @default(now())
+  finished      Boolean      @default(false)
+  amount        Float       
+  fixtureId     Int
+  type          overUnder
+  value         Int          
+  odd           Float
+  user          User?        @relation(fields: [userId], references: [id])
+
+  @@map("betsGoalsOverUnder")
+}
+
+enum overUnder {
+  over
+  under
+}
+
+enum homeAwayDraw{
+  home
+  away
+  draw
+}

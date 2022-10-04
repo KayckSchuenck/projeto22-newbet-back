@@ -22,7 +22,7 @@ export async function serviceSignUp(name:string,email:string,password:string,con
     const activationToken=uuid()
     const hashPassword = bcrypt.hashSync(password, 10);
 
-    await authRepository.insertUser({email, password:hashPassword,cpf:cryptedCPF,name,activationToken});
+    await authRepository.insertUser({email,password:hashPassword,cpf:cryptedCPF,name,activationToken});
 
     await sendEmail(email,activationToken)
 }
