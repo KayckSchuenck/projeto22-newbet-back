@@ -17,8 +17,10 @@ model User {
   activationToken String        @unique
   availableMoney  Float         @default(20)
   createdAt       DateTime      @default(now())
-  BetOptions                    BetOptions[]
-  BetGoalsOverUnder             BetGoalsOverUnder[]
+  betOptions                    BetOptions[]
+  betGoals                      BetGoals[]
+  betScores                     BetScores[]
+  betCorners                    BetCorners[]
   @@map("users")
 }
 
@@ -36,7 +38,7 @@ model BetOptions {
   @@map("betsOptions")
 }
 
-model BetGoalsOverUnder { 
+model BetGoals { 
   id            Int          @id @default(autoincrement())
   userId        Int
   createdAt     DateTime     @default(now())
@@ -44,11 +46,41 @@ model BetGoalsOverUnder {
   amount        Float       
   fixtureId     Int
   type          overUnder
-  value         Int          
+  value         Float          
   odd           Float
   user          User?        @relation(fields: [userId], references: [id])
 
-  @@map("betsGoalsOverUnder")
+  @@map("betsGoals")
+}
+
+model BetScores { 
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  createdAt     DateTime     @default(now())
+  finished      Boolean      @default(false)
+  amount        Float       
+  fixtureId     Int
+  scoreHome     Int
+  scoreAway     Int
+  odd           Float
+  user          User?        @relation(fields: [userId], references: [id])
+
+  @@map("betsScores")
+}
+
+model BetCorners { 
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  createdAt     DateTime     @default(now())
+  finished      Boolean      @default(false)
+  amount        Float       
+  fixtureId     Int
+  value         Float
+  type          overUnder
+  odd           Float
+  user          User?        @relation(fields: [userId], references: [id])
+
+  @@map("betsCorners")
 }
 
 enum overUnder {
