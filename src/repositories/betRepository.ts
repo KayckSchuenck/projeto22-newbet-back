@@ -1,5 +1,5 @@
 import prisma from "../database.js"
-import {CreateBetOptions,CreateBetGoalsCorners, CreateBetScores} from '../types/types.js'
+import {CreateBetOptions,CreateBetGoals, CreateBetScores} from '../types/types.js'
 
 async function insertBetOptions(insertBet:CreateBetOptions){
     await prisma.betOptions.create({
@@ -7,20 +7,14 @@ async function insertBetOptions(insertBet:CreateBetOptions){
     })
 }
 
-async function insertBetGoals(insertBet:CreateBetGoalsCorners){
+async function insertBetGoals(insertBet:CreateBetGoals){
     await prisma.betGoals.create({
-        data:insertBet
-    })
-}
-
-async function insertBetCorners(insertBet:CreateBetGoalsCorners){
-    await prisma.betCorners.create({
         data:insertBet
     })
 }
 
 async function insertBetScores(insertBet:CreateBetScores){
-    await prisma.betGoals.create({
+    await prisma.betScores.create({
         data:insertBet
     })
 }
@@ -38,11 +32,50 @@ async function findById(id:number) {
     })
 }
 
+async function findOptionBetById(userId:number) {
+    return prisma.betOptions.findMany({
+        where:{userId}
+    })
+}
+async function findGoalBetById(userId:number) {
+    return prisma.betGoals.findMany({
+        where:{userId}
+    })
+}
+
+async function findScoreBetById(userId:number) {
+    return prisma.betScores.findMany({
+        where:{userId}
+    })
+}
+
+async function updateOptionBetToFinished(id:number){
+    await prisma.betOptions.update({
+        where:{ id },
+        data:{
+            finished:true
+        }
+    })
+}
+
+async function updateGoalBetToFinished(id:number){
+    await prisma.betGoals.update({
+        where:{ id },
+        data:{
+            finished:true
+        }
+    })
+}
+
 export const betRepository={
     insertBetOptions,
     insertBetGoals,
-    insertBetCorners,
     insertBetScores,
     findById,
-    updateAvailableMoney
+    updateAvailableMoney,
+    findGoalBetById,
+    findOptionBetById,
+    findScoreBetById,
+    updateOptionBetToFinished,
+    updateGoalBetToFinished
 }

@@ -15,7 +15,7 @@ export const schemaPostBetScores=joi.object({
     amount:joi.number().required()
 })
 
-export const schemaPostBetGoalsCorners=joi.object({
+export const schemaPostBetGoals=joi.object({
     fixtureId:joi.number().required(),
     odd:joi.number().required(),
     type:joi.string().valid("over","under").required(),
