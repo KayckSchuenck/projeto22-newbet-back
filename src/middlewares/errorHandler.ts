@@ -13,7 +13,7 @@ export default function errorHandlerMiddleware(error:any,req: Request,res: Respo
 
   let statusCode = ERRORS[type];
   if (!statusCode) statusCode = 500; // any other types
-
+  
   console.log(error);
   return res.status(statusCode).send(message); // internal server error
 }
