@@ -33,7 +33,7 @@ model BetOptions {
   value         homeAwayDraw    
   odd           Float
   user          User?        @relation(fields: [userId], references: [id])
-
+  won           Boolean      @default(false)
   @@map("betsOptions")
 }
 
@@ -48,7 +48,7 @@ model BetGoals {
   value         Float          
   odd           Float
   user          User?        @relation(fields: [userId], references: [id])
-
+  won           Boolean      @default(false)
   @@map("betsGoals")
 }
 
@@ -63,7 +63,7 @@ model BetScores {
   scoreAway     Int
   odd           Float
   user          User?        @relation(fields: [userId], references: [id])
-
+  won           Boolean      @default(false)
   @@map("betsScores")
 }
 

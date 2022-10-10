@@ -1,8 +1,8 @@
-import { BetCorners, BetGoals, BetOptions,BetScores } from "@prisma/client"
+import { BetGoals, BetOptions,BetScores } from "@prisma/client"
 
 export async function getHashtableOptions(bets:BetOptions[]) {
     const hashtable={}
-    bets.forEach((bet:BetCorners|BetGoals|BetOptions)=>{
+    bets.forEach((bet:BetOptions)=>{
         if(!bet.finished){
             if(hashtable[bet.fixtureId]){
                 hashtable[bet.fixtureId].push({value:bet.value,reward:bet.odd*bet.amount,id:bet.id})

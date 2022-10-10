@@ -27,42 +27,54 @@ async function updateAvailableMoney(id:number,newMoney:number){
 }
 
 async function findById(id:number) {
-    return prisma.user.findUnique({
+    return await prisma.user.findUnique({
         where:{id}
     })
 }
 
 async function findOptionBetById(userId:number) {
-    return prisma.betOptions.findMany({
+    return await prisma.betOptions.findMany({
         where:{userId}
     })
 }
 async function findGoalBetById(userId:number) {
-    return prisma.betGoals.findMany({
+    return await prisma.betGoals.findMany({
         where:{userId}
     })
 }
 
 async function findScoreBetById(userId:number) {
-    return prisma.betScores.findMany({
+    return await prisma.betScores.findMany({
         where:{userId}
     })
 }
 
-async function updateOptionBetToFinished(id:number){
+async function updateOptionBetToFinished(id:number,won:boolean){
     await prisma.betOptions.update({
         where:{ id },
         data:{
-            finished:true
+            finished:true,
+            won
         }
     })
 }
 
-async function updateGoalBetToFinished(id:number){
+async function updateGoalBetToFinished(id:number,won:boolean){
     await prisma.betGoals.update({
         where:{ id },
         data:{
-            finished:true
+            finished:true,
+            won
+        }
+    })
+}
+
+async function updateScoreBetToFinished(id:number,won:boolean){
+    await prisma.betScores.update({
+        where:{ id },
+        data:{
+            finished:true,
+            won
         }
     })
 }
@@ -77,5 +89,6 @@ export const betRepository={
     findOptionBetById,
     findScoreBetById,
     updateOptionBetToFinished,
-    updateGoalBetToFinished
+    updateGoalBetToFinished,
+    updateScoreBetToFinished
 }

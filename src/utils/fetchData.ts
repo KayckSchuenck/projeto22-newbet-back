@@ -10,6 +10,8 @@ export async function fetchData(ids:string) {
     const { data: result } = await axios.get(
     `${process.env.EXTERNAL_API_BASE_URL}/fixtures?ids=${ids}`,
     config)
-    const filterFinishedMatches=result.response.filter(match=>match.fixture.status.short==="FT")
+    
+    const filterFinishedMatches=result.response.filter((match:any)=>match.fixture.status.short==="FT")
     return filterFinishedMatches
+    
 }
