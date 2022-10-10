@@ -32,7 +32,7 @@ export async function checkBets(req:Request, res:Response) {
 
     const amount=await serviceGetAvailableAmount(userId)
     
-    res.status(200).send(amount)
+    res.status(200).send({amount})
 }
 
 export async function getHistory(req:Request, res:Response){

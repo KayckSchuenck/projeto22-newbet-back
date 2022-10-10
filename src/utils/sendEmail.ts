@@ -3,7 +3,7 @@ import { authRepository } from '../repositories/authRepository.js'
 
 export async function sendEmail(email:string,data:string){
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-    const url=`http://localhost:5000/confirm/${data}`
+    const url=`https://projeto22newbets.herokuapp.com/confirm/${data}`
     try{
         const {email:user}=await authRepository.findByEmail(email)
         const msg = {
