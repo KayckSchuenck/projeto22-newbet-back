@@ -37,7 +37,7 @@ export async function serviceLogin(email:string,password:string) {
       const secretKey = process.env.JWT_SECRET;
       const config = { expiresIn: 60 * 60 * 24 };
       const token = jwt.sign(data, secretKey, config);
-      return {token,name:checkEmail.name,availableMoney:checkEmail.availableMoney}
+      return {token,name:checkEmail.name,id:checkEmail.id}
     } 
     else throw {type:"unauthorized",message:"Senha incorreta"}
 }

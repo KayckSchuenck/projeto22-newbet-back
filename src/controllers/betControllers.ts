@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { serviceCreateBetScores,serviceCheckBetsScores,serviceCreateBetOptions, serviceCreateBetGoals,serviceCheckBetsOptions,serviceCheckBetsGoals,serviceGetAvailableAmount, serviceGetHistory } from "../services/betService.js";
+import { serviceCreateBetScores,serviceCreateBetOptions, serviceCreateBetGoals, serviceGetHistory } from "../services/betService.js";
 
 export async function createBetOptions(req:Request, res:Response){
     const {userId}=res.locals.id
@@ -21,18 +21,6 @@ export async function createBetScores(req:Request, res:Response){
     const {fixtureId,amount,odd,scoreHome,scoreAway}=req.body
     const availableMoney=await serviceCreateBetScores(fixtureId,Number(amount),userId,Number(odd),scoreHome,scoreAway)
     res.status(201).send({availableMoney})
-}
-
-export async function checkBets(req:Request, res:Response) {
-    const {userId}=res.locals.id
-    
-    await serviceCheckBetsOptions(userId)
-    await serviceCheckBetsGoals(userId)
-    await serviceCheckBetsScores(userId)
-
-    const amount=await serviceGetAvailableAmount(userId)
-    
-    res.status(200).send({amount})
 }
 
 export async function getHistory(req:Request, res:Response){
