@@ -25,6 +25,7 @@ export async function serviceSignUp(name:string,email:string,password:string,con
     await authRepository.insertUser({email,password:hashPassword,cpf:cryptedCPF,name,activationToken});
 
     await sendEmail(email,activationToken)
+    return activationToken
 }
 
 export async function serviceLogin(email:string,password:string) {

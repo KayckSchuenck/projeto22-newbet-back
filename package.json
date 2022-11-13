@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "dotenv -e .env.test jest -i",
+    "test:integration": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/integration",
+    "test:unit": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/unit",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
     "start": "node dist/src/server.js"

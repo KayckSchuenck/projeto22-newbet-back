@@ -1,11 +1,11 @@
 import { Request,Response } from "express";
-import { serviceActivation, serviceLogin,serviceResendEmail,serviceSignUp } from "../services/authService.js";
-import { serviceCheckBetsGoals,serviceCheckBetsOptions,serviceCheckBetsScores,serviceGetAvailableAmount } from "../services/checkService.js";
+import { serviceActivation, serviceLogin,serviceResendEmail,serviceSignUp } from "../services/authService";
+import { serviceCheckBetsGoals,serviceCheckBetsOptions,serviceCheckBetsScores,serviceGetAvailableAmount } from "../services/checkService";
 
 export async function signUp(req:Request, res:Response) {
     const {  email, password, confirmPassword, cpf ,name} = req.body;
-    await serviceSignUp(name,email,password,confirmPassword,cpf)
-    res.sendStatus(201);
+    const activationToken=await serviceSignUp(name,email,password,confirmPassword,cpf)
+    res.send({activationToken}).status(201);
 }
 
 export async function login(req:Request, res:Response) {
