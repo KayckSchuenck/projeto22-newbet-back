@@ -1,7 +1,7 @@
 import {faker} from '@faker-js/faker'
 
 export async function createPostAuthTestBody(){
-    const password=faker.random
+    const password=faker.random.alphaNumeric(10)
     const body={
         cpf:faker.random.numeric(11),
         name:faker.name.fullName(),
@@ -17,8 +17,8 @@ export async function createPostAuthTestBodyFail(){
         cpf:faker.random.numeric(11),
         name:faker.name.fullName(),
         email:faker.internet.email(),
-        password:faker.random,
-        confirmPassword:faker.random
+        password:faker.random.alphaNumeric(10),
+        confirmPassword:faker.random.alphaNumeric(10)
     }
     return body;
 }

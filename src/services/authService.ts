@@ -2,9 +2,9 @@ import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
 import Cryptr from "cryptr"
 import { v4 as uuid } from 'uuid';
-import notFoundError from "../middlewares/notFoundError.js";
-import {authRepository} from "../repositories/authRepository.js";
-import { sendEmail } from '../utils/sendEmail.js';
+import notFoundError from "../middlewares/notFoundError";
+import {authRepository} from "../repositories/authRepository";
+import { sendEmail } from '../utils/sendEmail';
 
 
 const cryptr=new Cryptr(process.env.CRYPTR_KEY)

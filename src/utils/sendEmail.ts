@@ -1,5 +1,5 @@
 import sgMail from '@sendgrid/mail'
-import { authRepository } from '../repositories/authRepository.js'
+import { authRepository } from '../repositories/authRepository'
 
 export async function sendEmail(email:string,data:string){
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)

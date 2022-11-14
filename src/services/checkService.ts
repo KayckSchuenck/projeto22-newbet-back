@@ -1,9 +1,9 @@
-import notFoundError from "../middlewares/notFoundError.js";
-import { betRepository } from "../repositories/betRepository.js";
-import { CheckBet } from "../types/types.js";
-import { fetchData } from "../utils/fetchData.js";
-import { getFixturesIds } from "../utils/getFixturesIds.js";
-import { getHashtableOptions,getHashtableGoals,getHashtableScores } from "../utils/createHashtable.js";
+import notFoundError from "../middlewares/notFoundError";
+import { betRepository } from "../repositories/betRepository";
+import { CheckBet } from "../types/types";
+import { fetchData } from "../utils/fetchData";
+import { getFixturesIds } from "../utils/getFixturesIds";
+import { getHashtableOptions,getHashtableGoals,getHashtableScores } from "../utils/createHashtable";
 
 
 export async function serviceCheckBetsOptions(userId:number) {

@@ -1,8 +1,8 @@
 import {Router} from 'express'
-import schemaValidateMiddleware from "../middlewares/schemaMiddleware.js";
-import { validateToken } from '../middlewares/tokenValidation.js';
-import { schemaPostBetOptions,schemaPostBetGoals,schemaPostBetScores } from '../schemas/betSchemas.js';
-import { createBetOptions,createBetScores,createBetGoals,getHistory } from '../controllers/betControllers.js';
+import schemaValidateMiddleware from "../middlewares/schemaMiddleware";
+import { validateToken } from '../middlewares/tokenValidation';
+import { schemaPostBetOptions,schemaPostBetGoals,schemaPostBetScores } from '../schemas/betSchemas';
+import { createBetOptions,createBetScores,createBetGoals,getHistory } from '../controllers/betControllers';
 
 const betRouter=Router();
 

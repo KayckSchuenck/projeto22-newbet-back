@@ -1,5 +1,5 @@
-import prisma from "../database.js"
-import {CreateBetOptions,CreateBetGoals, CreateBetScores} from '../types/types.js'
+import prisma from "../database"
+import {CreateBetOptions,CreateBetGoals, CreateBetScores} from '../types/types'
 
 async function insertBetOptions(insertBet:CreateBetOptions){
     await prisma.betOptions.create({

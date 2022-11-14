@@ -32,8 +32,8 @@ model BetOptions {
   fixtureId     Int
   value         homeAwayDraw    
   odd           Float
-  user          User?        @relation(fields: [userId], references: [id])
   won           Boolean      @default(false)
+  user          User?        @relation(fields: [userId], references: [id])
   @@map("betsOptions")
 }
 
@@ -47,8 +47,8 @@ model BetGoals {
   type          overUnder
   value         Float          
   odd           Float
-  user          User?        @relation(fields: [userId], references: [id])
   won           Boolean      @default(false)
+  user          User?        @relation(fields: [userId], references: [id])
   @@map("betsGoals")
 }
 
@@ -62,8 +62,8 @@ model BetScores {
   scoreHome     Int
   scoreAway     Int
   odd           Float
-  user          User?        @relation(fields: [userId], references: [id])
   won           Boolean      @default(false)
+  user          User?        @relation(fields: [userId], references: [id])
   @@map("betsScores")
 }
 
