@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
-import { serviceActivation, serviceLogin,serviceResendEmail,serviceSignUp } from "../services/authService";
-import { serviceCheckBetsGoals,serviceCheckBetsOptions,serviceCheckBetsScores,serviceGetAvailableAmount } from "../services/checkService";
+import { serviceActivation, serviceLogin,serviceResendEmail,serviceSignUp } from "../services/authService.js";
+import { serviceCheckBetsGoals,serviceCheckBetsOptions,serviceCheckBetsScores,serviceGetAvailableAmount } from "../services/checkService.js";
 
 export async function signUp(req:Request, res:Response) {
     const {  email, password, confirmPassword, cpf ,name} = req.body;

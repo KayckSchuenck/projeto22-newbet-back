@@ -1,9 +1,9 @@
 import sgMail from '@sendgrid/mail'
-import { authRepository } from '../repositories/authRepository'
+import { authRepository } from '../repositories/authRepository.js'
 
 export async function sendEmail(email:string,data:string){
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-    const url=`https://projeto22newbets.herokuapp.com/confirm/${data}`
+    const url=`ec2-107-20-117-158.compute-1.amazonaws.com/confirm/${data}`
     try{
         const {email:user}=await authRepository.findByEmail(email)
         const msg = {

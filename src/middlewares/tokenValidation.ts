@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
-import notFoundError from "./notFoundError";
+import notFoundError from "./notFoundError.js";
 
 export function validateToken(req : Request, res: Response, next: NextFunction){
     const { authorization } = req.headers;

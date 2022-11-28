@@ -1,6 +1,6 @@
 import { Router } from "express";
-import authRouter from "./authRoutes";
-import betRouter from "./betRoutes";
+import authRouter from "./authRoutes.js";
+import betRouter from "./betRoutes.js";
 
 const router = Router();
 router.use(authRouter)

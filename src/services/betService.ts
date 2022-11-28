@@ -1,5 +1,5 @@
-import notFoundError from "../middlewares/notFoundError";
-import { betRepository } from "../repositories/betRepository";
+import notFoundError from "../middlewares/notFoundError.js";
+import { betRepository } from "../repositories/betRepository.js";
 
 export async function serviceCreateBetOptions(fixtureId:number,amount:number,userId:number,odd:number,value:any){
     const user=await betRepository.findById(userId)

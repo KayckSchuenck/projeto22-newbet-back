@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { serviceCreateBetScores,serviceCreateBetOptions, serviceCreateBetGoals, serviceGetHistory } from "../services/betService";
+import { serviceCreateBetScores,serviceCreateBetOptions, serviceCreateBetGoals, serviceGetHistory } from "../services/betService.js";
 
 export async function createBetOptions(req:Request, res:Response){
     const {userId}=res.locals.id
