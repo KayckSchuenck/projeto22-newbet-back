@@ -1,5 +1,5 @@
 {
-  "name": "projeto20-repoprovas",
+  "name": "newbets",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -8,8 +8,8 @@
     "test:integration": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/integration",
     "test:unit": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/unit",
     "dev": "nodemon src/server.ts",
-    "build": "tsc",
-    "start": "node dist/src/server.js"
+    "build": "tsc ",
+    "start": "npx prisma migrate deploy && node dist/src/server.js"
   },
   "keywords": [],
   "author": "",
